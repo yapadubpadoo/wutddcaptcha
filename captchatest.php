@@ -10,34 +10,35 @@ class CaptchaTest extends PHPUnit_Framework_TestCase
 	// Pattern 2
 	// seven - 4 = ?
 	// five + 1 = ?
+	public function setUp()
+	{
+		$this->captcha = new Captcha();
+	}
 
 	public function testGetTextNumberWith6ReturnSix()
 	{
-		$captcha = new Captcha();
-		$this->assertEquals('six', $captcha->getTextNumber(6));
+		
+		$this->assertEquals('six', $this->captcha->getTextNumber(6));
 	}
 
 	public function testGetTextNumberWith10ReturnTen()
 	{
-		$captcha = new Captcha();
-		$this->assertEquals('ten', $captcha->getTextNumber(10));
+		$this->assertEquals('ten', $this->captcha->getTextNumber(10));
 	}
 
 	public function testSetRightOperandPattern1With5ReturnFive()
 	{
-		$captcha = new Captcha();
-		$captcha->setPattern(1);
-		$captcha->setRightOperand(5);
-		$this->assertEquals('five', $captcha->getRightOperand());
+		$this->captcha->setPattern(1);
+		$this->captcha->setRightOperand(5);
+		$this->assertEquals('five', $this->captcha->getRightOperand());
 	}
 
 
 	public function testSetLeftOperandPattern1With3Return3()
 	{
-		$captcha = new Captcha();
-		$captcha->setPattern(1);
-		$captcha->setLeftOperand(3);
-		$this->assertEquals(3, $captcha->getLeftOperand());
+		$this->captcha->setPattern(1);
+		$this->captcha->setLeftOperand(3);
+		$this->assertEquals(3, $this->captcha->getLeftOperand());
 	}
 
 	public function testSetRightOperandPattern2With4Return4()
@@ -52,15 +53,33 @@ class CaptchaTest extends PHPUnit_Framework_TestCase
 	
 	public function testGetOperator1ReturnPlusOperator()
 	{
-		$captcha = new Captcha();
-		$captcha->setOperator(1);
-		$this->assertEquals('+', $captcha->getOperator());
+		$this->captcha->setOperator(1);
+		$this->assertEquals('+', $this->captcha->getOperator());
 	}
 
 	public function testGetOperator2ReturnMinusOperator()
 	{
-		$captcha = new Captcha();
-		$captcha->setOperator(2);
-		$this->assertEquals('-', $captcha->getOperator());
+		$this->captcha->setOperator(2);
+		$this->assertEquals('-', $this->captcha->getOperator());
 	}
+
+	public function testGetQuestionPattern1()
+	{
+		$this->captcha->setPattern(1);
+		$this->captcha->setLeftOperand(1);
+		$this->captcha->setOperator(1);
+		$this->captcha->setRightOperand(5);
+		$this->assertEquals('1 + five = ?', $this->captcha->getQuestion());
+	}
+
+	public function testGetQuestionPattern2()
+	{
+		$this->captcha->setPattern(2);
+		$this->captcha->setLeftOperand(7);
+		$this->captcha->setOperator(2);
+		$this->captcha->setRightOperand(3);
+		$this->assertEquals('seven - 3 = ?', $this->captcha->getQuestion());
+	}
+
+
 }

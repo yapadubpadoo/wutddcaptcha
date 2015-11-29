@@ -70,4 +70,12 @@ class Captcha
 		}
 		return $this->left_operand;
 	}
+
+	public function getQuestion()
+	{
+		return $this->getLeftOperand()
+		.' '.$this->getOperator()
+		.' '.$this->getRightOperand()
+		.' = ?';
+	}
 }

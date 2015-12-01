@@ -29,4 +29,5 @@ At project folder, run
 ``` bash
 php -S localhost:5000 captcha.php
 ```
-![Screenshot](https://raw.github.com/yapadubpadoo/wutddcaptcha/master/ScreenShot1.png)
+Access via browser 
+[Screenshot] (https://raw.github.com/yapadubpadoo/wutddcaptcha/master/ScreenShot1.png)

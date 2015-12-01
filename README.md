@@ -30,4 +30,6 @@ At project folder, run
 php -S localhost:5000 captcha.php
 ```
 Access via browser 
+
+
 ![Screenshot] (https://raw.github.com/yapadubpadoo/wutddcaptcha/master/ScreenShot1.png)

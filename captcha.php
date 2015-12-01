@@ -78,4 +78,13 @@ class Captcha
 		.' '.$this->getRightOperand()
 		.' = ?';
 	}
+
+	public function generate($random)
+	{
+		$this->setPattern($random->randomPattern());
+		$this->setLeftOperand($random->randomOperand());
+		$this->setOperator($random->randomOperator());
+		$this->setRightOperand($random->randomOperand());
+	}
+
 }

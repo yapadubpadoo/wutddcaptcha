@@ -1,4 +1,7 @@
 <?php
+
+require_once("random.php");
+
 class CaptchaTest extends PHPUnit_Framework_TestCase
 {
 	// Captcha
@@ -10,6 +13,8 @@ class CaptchaTest extends PHPUnit_Framework_TestCase
 	// Pattern 2
 	// seven - 4 = ?
 	// five + 1 = ?
+	private $captcha;
+
 	public function setUp()
 	{
 		$this->captcha = new Captcha();
@@ -43,12 +48,16 @@ class CaptchaTest extends PHPUnit_Framework_TestCase
 
 	public function testSetRightOperandPattern2With4Return4()
 	{
-
+		$this->captcha->setPattern(2);
+		$this->captcha->setRightOperand(4);
+		$this->assertEquals(4, $this->captcha->getRightOperand());
 	}
 
 	public function testSetLeftOperandPattern2With7ReturnSeven()
 	{
-
+		$this->captcha->setPattern(2);
+		$this->captcha->setLeftOperand(7);
+		$this->assertEquals('seven', $this->captcha->getLeftOperand());
 	}
 	
 	public function testGetOperator1ReturnPlusOperator()
@@ -81,5 +90,33 @@ class CaptchaTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals('seven - 3 = ?', $this->captcha->getQuestion());
 	}
 
+	public function testGenerateCaptchaPattern1OperatorType1()
+	{
+		$random_mock = $this->getMockBuilder('Random')
+							->getMock();
+		$random_mock->method('randomPattern')
+					->willReturn(1);
+		$random_mock->method('randomOperator')
+					->willReturn(1);
+		$random_mock->method('randomOperand')
+					->willReturn(4);
 
+		$this->captcha->generate($random_mock);
+		$this->assertEquals('4 + four = ?', 
+			$this->captcha->getQuestion());
+	}
+
+	
+
+	// public function testGetRandomNumberShouldReturn5()
+	// {
+
+	// }
+
+	// public function testGetRandomNumberShouldReturn5()
+	// {
+	// 	$captcha_mock = $this->getMockBuilder('Captcha')->getMock();
+	// 	$captcha_mock->method('getRandomNumber')->willReturn(5);
+	// 	$this->assertEquals(5, $captcha_mock->getRandomNumber());
+	// }
 }

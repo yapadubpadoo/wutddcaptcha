@@ -1,5 +1,9 @@
 #WU TDD using PHP
 
+## Presentation
+- https://www.haikudeck.com/p/cc849c9a20/software-testing
+- https://www.haikudeck.com/p/wl6rQaADMJ/things-modern-developers-should-know
+
 ## Preparation note
 http://notepad.cc/wutdd
 
